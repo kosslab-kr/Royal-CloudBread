@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour {
 
+    
     private static GameController instance;
 
     public static GameController GetInstance()
@@ -71,6 +72,11 @@ public class GameController : MonoBehaviour {
     public float GetRespwanTime(int num)
     {
         return respawnTime[num];
+    }
+
+    public bool[] GetTowerActiveArr()
+    {
+        return towerActive;
     }
 
     public void SetTowerActive(int num, bool isActive)

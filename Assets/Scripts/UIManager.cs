@@ -21,5 +21,6 @@ public class UIManager : MonoBehaviour {
 
         respwanTime1.text = GameController.GetInstance().GetRespwanTime(0).ToString("N1");
         respwanTime2.text = GameController.GetInstance().GetRespwanTime(1).ToString("N1");
+        
     }
 }
