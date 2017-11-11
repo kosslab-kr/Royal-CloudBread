@@ -64,31 +64,34 @@ public class GameController : MonoBehaviour {
 
     IEnumerator WaitForIt()
     {
-        for(int i=1; towerActive[0];)
+        while(true)
         {
-            Debug.Log("wait1");
-            if (i == resetTime)
+            for (int i = 1; towerActive[0];)
             {
-                isTimeUp[0] = true;
-                i = 0;
-                respawnTime[0] = resetTime;
+                Debug.Log("wait1");
+                if (i == resetTime)
+                {
+                    isTimeUp[0] = true;
+                    i = 0;
+                    respawnTime[0] = resetTime;
+                }
+                respawnTime[0]--;
+                i++;
+                yield return new WaitForSeconds(1.0f);
             }
-            respawnTime[0]--;
-            i++;
-        }
-        for (int j = 1; true && towerActive[1];)
-        {
-            if (j == resetTime)
+            for (int j = 1; true && towerActive[1];)
             {
-                isTimeUp[1] = true;
-                j = 0;
-                respawnTime[1] = resetTime;
+                if (j == resetTime)
+                {
+                    isTimeUp[1] = true;
+                    j = 0;
+                    respawnTime[1] = resetTime;
+                }
+                respawnTime[1]--;
+                j++;
+                yield return new WaitForSeconds(1.0f);
             }
-            respawnTime[1]--;
-            j++;
         }
-
-        yield return new WaitForSeconds(1.0f);
     }
 
 
@@ -107,6 +110,5 @@ public class GameController : MonoBehaviour {
             else
                 towerActive[i] = !isActive;
         }
-        StartCoroutine(WaitForIt());
     }
 }
