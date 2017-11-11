@@ -1,0 +1,19 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Controllers\UnitDataController.cs">
+    <Files>
+      <File FileName="Assets\Scripts\Loader.cs" Line="15" Column="1" />
+      <File FileName="Assets\Scripts\BoardManager.cs" Line="112" Column="14" />
+      <File FileName="Assets\Scripts\UnitScripts\UnitGenerator.cs" Line="11" Column="10" />
+      <File FileName="Assets\Scripts\Controllers\GameController.cs" Line="56" Column="4" />
+      <File FileName="Assets\Scripts\Controllers\UnitDataController.cs" Line="57" Column="6" />
+      <File FileName="Assets\Scripts\UIScripts\UIManager.cs" Line="17" Column="60" />
+      <File FileName="Assets\Scripts\UnitScripts\UnitBehaviour.cs" Line="21" Column="15" />
+      <File FileName="Assets\Scripts\UnitScripts\ObjectBase.cs" Line="29" Column="33" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

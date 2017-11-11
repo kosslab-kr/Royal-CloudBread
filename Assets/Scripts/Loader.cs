@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Loader : MonoBehaviour {
 
-    public GameObject gameMnanager;
+    public GameObject gameManager;
     
 	void Awake () {
         if (GameManager.instance == null)
-            Instantiate(gameMnanager);
+            Instantiate(gameManager);
 	}
 	
 }
