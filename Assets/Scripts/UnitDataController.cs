@@ -23,93 +23,33 @@ public class UnitDataController : MonoBehaviour {
     }
 
     private int maxUnitNum = 6;
-    private int unit1_num = 0;
-    private int unit2_num = 0;
-    private int unit3_num = 0;
-    private int unit4_num = 0;
+    private int[] unitNum = { 0, 0, 0, 0 };
+    
     private int unit_totalNum = 0;
 
-    public void Add_unit1_num()
+    public void Add_unit_num(int num)
     {
         if(unit_totalNum < maxUnitNum)
         {
-            unit1_num += 1;
+            unitNum[num] += 1;
             unit_totalNum += 1;
         }
     }
-    public void Add_unit2_num()
+    
+    public void Sub_unit_num(int num)
     {
-        if (unit_totalNum < maxUnitNum)
-        { 
-            unit2_num += 1;
-            unit_totalNum += 1;
-        }
-    }
-    public void Add_unit3_num()
-    {
-        if (unit_totalNum < maxUnitNum)
+        if(unit_totalNum > 0 && unitNum[num] > 0)
         {
-            unit3_num += 1;
-            unit_totalNum += 1;
+            unitNum[num] -= 1;
+            unit_totalNum -= 1;
         }
     }
-    public void Add_unit4_num()
-    {
-        if (unit_totalNum < maxUnitNum)
-        {
-            unit4_num += 1;
-            unit_totalNum += 1;
-        }
-    }
+    
 
-    public void Sub_unit1_num()
+    public int getUnitNum(int num)
     {
-        if(unit_totalNum > 0 && unit1_num > 0)
-        {
-            unit1_num -= 1;
-            unit_totalNum -= 1;
-        }
+        return unitNum[num];
     }
-    public void Sub_unit2_num()
-    {
-        if (unit_totalNum > 0 && unit2_num >0)
-        {
-            unit2_num -= 1;
-            unit_totalNum -= 1;
-        }
-    }
-    public void Sub_unit3_num()
-    {
-        if (unit_totalNum > 0 && unit3_num > 0)
-        {
-            unit3_num -= 1;
-            unit_totalNum -= 1;
-        }
-    }
-    public void Sub_unit4_num()
-    {
-        if (unit_totalNum > 0 && unit4_num > 0)
-        {
-            unit4_num -= 1;
-            unit_totalNum -= 1;
-        }
-    }
-
-    public int getUnit1Num()
-    {
-        return unit1_num;
-    }
-    public int getUnit2Num()
-    {
-        return unit2_num;
-    }
-    public int getUnit3Num()
-    {
-        return unit3_num;
-    }
-    public int getUnit4Num()
-    {
-        return unit4_num;
-    }
+    
 
 }
