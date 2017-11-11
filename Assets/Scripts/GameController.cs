@@ -27,7 +27,7 @@ public class GameController : MonoBehaviour {
     private bool[] towerActive = { false, false };
     private float[] respawnTime = new float[2];
     private float checkTime;
-    private float resetTime = 6.0f;
+    private float resetTime = 6;
     private bool[] isTimeUp = { false, false };
 
     // Use this for initialization
@@ -35,65 +35,37 @@ public class GameController : MonoBehaviour {
         for (int i = 0; i < 2; i++)
             respawnTime[i] = 6.0f;
         checkTime = 0.0f;
-        StartCoroutine(WaitForIt());
     }
 	
 	// Update is called once per frame
 	void Update () {
-		if(towerActive[0])
-        {
-            if(isTimeUp[0])
-            {
-                /*
-                 * 유닛생성코드
-                 */
-                isTimeUp[0] = false;
-            }
-        }
-        if(towerActive[1])
-        {
-            if (isTimeUp[1])
-            {
-                /*
-                 * 유닛생성코드
-                 */
-                isTimeUp[1] = false;
-            }
-        }
 	}
 
-    IEnumerator WaitForIt()
+    private void FixedUpdate()
     {
-        while(true)
+        if(towerActive[0])
         {
-            for (int i = 1; towerActive[0];)
+            respawnTime[0] -= Time.deltaTime;
+            if(respawnTime[0] <=0)
             {
-                Debug.Log("wait1");
-                if (i == resetTime)
-                {
-                    isTimeUp[0] = true;
-                    i = 0;
-                    respawnTime[0] = resetTime;
-                }
-                respawnTime[0]--;
-                i++;
-                yield return new WaitForSeconds(1.0f);
+                /*
+                 * 유닛생성코드
+                 */
+                respawnTime[0] = 6.0f;
             }
-            for (int j = 1; true && towerActive[1];)
+        }
+        else if(towerActive[1])
+        {
+            respawnTime[1] -= Time.deltaTime;
+            if (respawnTime[1] <= 0)
             {
-                if (j == resetTime)
-                {
-                    isTimeUp[1] = true;
-                    j = 0;
-                    respawnTime[1] = resetTime;
-                }
-                respawnTime[1]--;
-                j++;
-                yield return new WaitForSeconds(1.0f);
+                /*
+                 * 유닛생성코드
+                 */
+                respawnTime[1] = 6.0f;
             }
         }
     }
-
 
 
     public float GetRespwanTime(int num)
