@@ -1,0 +1,19 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\MeleeUnitBehaviour.cs">
+    <Files>
+      <File FileName="Assets\Scripts\ObjectBase.cs" Line="21" Column="56" />
+      <File FileName="Assets\Scripts\UnitBehaviour.cs" Line="55" Column="24" />
+      <File FileName="Assets\Scripts\RangeUnitBehaviour.cs" Line="13" Column="3" />
+      <File FileName="Assets\Scripts\MeleeUnitBehaviour.cs" Line="39" Column="91" />
+      <File FileName="Assets\Scripts\MagicUnitBehaviour.cs" Line="43" Column="3" />
+      <File FileName="Assets\Scripts\ArrowBehaviour.cs" Line="16" Column="14" />
+      <File FileName="Assets\Scripts\UnitGenerator.cs" Line="19" Column="21" />
+      <File FileName="Assets\Scripts\DetectorBehaviour.cs" Line="12" Column="78" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
