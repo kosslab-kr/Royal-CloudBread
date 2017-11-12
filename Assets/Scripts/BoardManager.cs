@@ -73,7 +73,7 @@ public class BoardManager : MonoBehaviour {
                 GameObject toInstantiate = floorTiles[Random.Range(0, floorTiles.Length)];
                 if (x == -1 || x == columns || y == -1 || y == rows)
                     toInstantiate = outerWallTiles[Random.Range(0, outerWallTiles.Length)];
-                if((y== rows/2 && x>=0 && x<=3) || (y == rows / 2 && x >= 8 && x <= 12) || (y == rows / 2 && x >= 17 && x <= 20))
+                if ((y == rows / 2 && x == 0) || (y == rows / 2 && x == 10) || (y == rows / 2 && x == 20))
                     toInstantiate = barrierTiles[0];
 
                 GameObject instance = Instantiate(toInstantiate, new Vector3(x, y, 0f), Quaternion.identity) as GameObject;
