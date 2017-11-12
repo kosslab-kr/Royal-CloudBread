@@ -16,8 +16,8 @@ public class ObjectBase : MonoBehaviour {
 	protected float timeSpent;
 	//NavMeshAgent agent;
 
-	public GameObject Popup;
-	GameObject myPopup;
+	//public GameObject Popup;
+	//GameObject myPopup;
 
 	protected void Start () {
 		enemy = null;
@@ -26,9 +26,9 @@ public class ObjectBase : MonoBehaviour {
 
 		timeSpent = attackFreq;							//처음 적 인식시 바로 공격
 
-		myPopup = Instantiate (Popup);
-		myPopup.transform.position = transform.position + new Vector3 (0.0f, 2.0f, 0.0f);
-		myPopup.SetActive (false);
+		//myPopup = Instantiate (Popup);
+		//myPopup.transform.position = transform.position + new Vector3 (0.0f, 2.0f, 0.0f);
+		//myPopup.SetActive (false);
 	}
 
 	public int HP;
@@ -43,7 +43,7 @@ public class ObjectBase : MonoBehaviour {
 			Debug.Log ("destroyed!");
 		}
 
-		myPopup.SetActive (true);
+		//myPopup.SetActive (true);
 	}
 
 

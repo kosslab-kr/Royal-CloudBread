@@ -25,14 +25,13 @@ public class GameController : MonoBehaviour {
     }
 
 	int activeTower = -1;			//현재 활성상태인 타워의 번호만을 저장, -1은 유저가 터치하기 전상태
-	static float resetTime = 6.0f;
+	public static float resetTime = 6.0f;
 	private float[] respawnTime = new float[2];
 
     //private bool[] towerActive = { false, false };
     //private float checkTime;
     //private bool[] isTimeUp = { false, false };
 
-    // Use this for initialization
     void Start () {
 		for (int i = 0; i < 2; i++)
 			respawnTime [i] = resetTime;
@@ -84,4 +83,11 @@ public class GameController : MonoBehaviour {
         }
         */
     }
+
+	public bool isTowerActive(int num){
+		if (activeTower == num)
+			return true;
+		else
+			return false;
+	}
 }

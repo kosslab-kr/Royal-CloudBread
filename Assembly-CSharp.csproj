@@ -56,6 +56,10 @@
      <Compile Include="Assets\Scripts\Controllers\UnitDataController.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\Scripts\Loader.cs" />
+     <Compile Include="Assets\Scripts\SceneScripts\ItemObject.cs" />
+     <Compile Include="Assets\Scripts\SceneScripts\LevelLoader.cs" />
+     <Compile Include="Assets\Scripts\SceneScripts\MenuButton.cs" />
+     <Compile Include="Assets\Scripts\UIScripts\RespawnTimeShower.cs" />
      <Compile Include="Assets\Scripts\UIScripts\TowerButton.cs" />
      <Compile Include="Assets\Scripts\UIScripts\UIManager.cs" />
      <Compile Include="Assets\Scripts\UIScripts\UnitPlusButton.cs" />

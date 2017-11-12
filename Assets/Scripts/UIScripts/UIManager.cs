@@ -19,7 +19,7 @@ public class UIManager : MonoBehaviour {
         unit3Displayer.text = UnitDataController.GetInstance().getUnitNum(2).ToString();
         unit4Displayer.text = UnitDataController.GetInstance().getUnitNum(3).ToString();
 
-        respwanTime1.text = GameController.GetInstance().GetRespwanTime(0).ToString("N1");
-		respwanTime2.text = GameController.GetInstance().GetRespwanTime(1).ToString("N1");
+        //respwanTime1.text = GameController.GetInstance().GetRespwanTime(0).ToString("N1");
+		//respwanTime2.text = GameController.GetInstance().GetRespwanTime(1).ToString("N1");
     }
 }

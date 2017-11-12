@@ -50,13 +50,15 @@ public class UnitDataController : MonoBehaviour {
             unit_totalNum -= 1;
 
 			int i = generationList.Count - 1;
-			while (true) {
+			while (i >= 0) {
 				if (generationList [i] == units [num]) {
 					generationList.RemoveAt (i);
 					break;
 				}
 				i--;
 			}
+			if (i < 0)
+				Debug.Log ("Errror: Thr unit doesn't exist in the list");
         }
     }
     

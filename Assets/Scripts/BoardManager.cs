@@ -167,8 +167,8 @@ public class BoardManager : MonoBehaviour {
     public void SetupScene(int level)
     {
         BoardSetup();
-        ourTowerSetup();
-        enemyTowerSetup();
+        //ourTowerSetup();
+        //enemyTowerSetup();
         InitializeList();
         //LayoutObjectAtRandom(wallTiles, wallCount.minimum, wallCount.maximum);
         //LayoutObjectAtRandom(foodTiles, foodCount.minimum, foodCount.maximum);

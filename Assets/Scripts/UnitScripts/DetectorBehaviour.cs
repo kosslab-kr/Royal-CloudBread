@@ -6,7 +6,7 @@ using UnityEngine;
 public class DetectorBehaviour : MonoBehaviour {
 	ObjectBase self;
 
-	List<GameObject> enemyList;	//탐지한 적을 저장하는 큐
+	List<GameObject> enemyList;	//탐지한 적을 저장하는 리스트
 
 	void Start () {
 		self = transform.parent.gameObject.GetComponent<ObjectBase>();	//탐지하고 있는 개체
@@ -15,7 +15,8 @@ public class DetectorBehaviour : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
-		if (!other.gameObject.CompareTag (self.gameObject.tag)) {
+		print (other.gameObject);
+		if (other.gameObject.CompareTag(transform.parent.gameObject.tag) == false) {
 			enemyList.Add (other.gameObject);
 		}
 	}
