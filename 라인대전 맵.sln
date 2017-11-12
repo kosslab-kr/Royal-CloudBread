@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2017
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "라인대전 맵", "라인대전 맵.csproj", "{862D0C97-8FB8-4074-FA90-72712153F494}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "라인대전 맵.Editor", "라인대전 맵.Editor.csproj", "{E6AC65D1-DECD-DA14-9DEB-BC3D40DAB9F7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{862D0C97-8FB8-4074-FA90-72712153F494}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{862D0C97-8FB8-4074-FA90-72712153F494}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{862D0C97-8FB8-4074-FA90-72712153F494}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{862D0C97-8FB8-4074-FA90-72712153F494}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6AC65D1-DECD-DA14-9DEB-BC3D40DAB9F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6AC65D1-DECD-DA14-9DEB-BC3D40DAB9F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6AC65D1-DECD-DA14-9DEB-BC3D40DAB9F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6AC65D1-DECD-DA14-9DEB-BC3D40DAB9F7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

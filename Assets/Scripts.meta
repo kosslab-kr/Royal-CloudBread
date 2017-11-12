@@ -1,9 +1,18 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 1bec6090376aed14896fbb5e7dc9a178
 folderAsset: yes
 timeCreated: 1510450949
 licenseType: Free
 DefaultImporter:
+=======
+guid: b44ca2f89e0c2f04cb9c68463d757b19
+folderAsset: yes
+timeCreated: 1510308205
+licenseType: Free
+DefaultImporter:
+  externalObjects: {}
+>>>>>>> map_and_logic
   userData: 
   assetBundleName: 
   assetBundleVariant: 
