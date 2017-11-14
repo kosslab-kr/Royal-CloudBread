@@ -7,9 +7,13 @@ public class UnitSubButton : MonoBehaviour {
 
     public int num;
 
-    public void OnClick()
-    {
-        UnitDataController.GetInstance().Sub_unit_num(num);
+    public void OnClick(){
+		UnitGenerator activeGen = GameController.GetInstance ().getActiveGen ();
+
+		if (activeGen) {
+			activeGen.popGenUnit (num);
+			UIManager.GetInstance ().setUnitNumText ();
+		}
     }
 
 }

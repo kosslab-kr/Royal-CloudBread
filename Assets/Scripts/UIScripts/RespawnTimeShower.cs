@@ -4,18 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class RespawnTimeShower : MonoBehaviour {
-	public int towerNum;
+	//float value;
 
-	void Start(){
-		GetComponentInChildren<Slider> ().value = GameController.resetTime;
-		//GetComponentInChildren<Text>().text = GameController.resetTime.ToString("N1");
+	//Set Time of Displayer
+	public void setTime(float _value){
+		//value = _value;
+
+		GetComponentInChildren<Slider> ().value = _value;
 	}
-
-	void FixedUpdate () {
-		if (GameController.GetInstance ().isTowerActive(towerNum)){
-			GetComponentInChildren<Slider> ().value = GameController.GetInstance ().GetRespwanTime (towerNum);
-			//GetComponentInChildren<Text>().text = GameController.GetInstance ().GetRespwanTime (towerNum).ToString("N1);
-		}
-
-    }
 }

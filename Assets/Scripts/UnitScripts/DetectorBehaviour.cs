@@ -15,7 +15,6 @@ public class DetectorBehaviour : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D other){
-		print (other.gameObject);
 		if (other.gameObject.CompareTag(transform.parent.gameObject.tag) == false) {
 			enemyList.Add (other.gameObject);
 		}

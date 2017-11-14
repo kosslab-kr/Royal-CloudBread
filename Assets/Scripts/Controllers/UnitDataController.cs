@@ -21,20 +21,28 @@ public class UnitDataController : MonoBehaviour {
         }
         return instance;
     }
-	public static int maxUnitNum = 6;
-	public static int unitKind = 4;
 
-	public GameObject[] units = new GameObject[unitKind];
-	List<GameObject> generationList = new List<GameObject>();
+	public readonly int maxUnitNum = 6;
+	public readonly int unitKind = 4;
 
-    private int[] unitNum = { 0, 0, 0, 0 };
-    private int unit_totalNum = 0;
+	//Temporary code, need modification to get unit data by user choice
+	public GameObject[] unit;
+	//List<GameObject> generationList = new List<GameObject>();
+
+    //private int[] unitNum = { 0, 0, 0, 0 };
+    //private int unit_totalNum = 0;
 
 	void Start(){
-		for (int i = 0; i < unitKind; i++)
-			units [i].GetComponent<UnitBehaviour> ().num = i;
+		for (int i = 0; i < unitKind; i++) {
+			unit [i].GetComponent<UnitBehaviour> ().num = i;
+		}
 	}
 
+	public GameObject getUnitAt(int i){
+		return unit [i];
+	}
+
+	/*
     public void Add_unit_num(int num)
     {
         if(unit_totalNum < maxUnitNum)
@@ -87,7 +95,7 @@ public class UnitDataController : MonoBehaviour {
 		return unit;
 
 	}
-	/*
+
 	public void resetUnitNum(){
 		for (int i = 0; i < unitKind; i++)
 			unitNum [i] = 0;

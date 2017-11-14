@@ -4,22 +4,38 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour {
+	private static UIManager instance;
 
-    public Text unit1Displayer;
-    public Text unit2Displayer;
-    public Text unit3Displayer;
-    public Text unit4Displayer;
-    public Text respwanTime1;
-    public Text respwanTime2;
+	public static UIManager GetInstance()
+	{
+		if (instance == null)
+		{
+			instance = FindObjectOfType<UIManager>();
 
-    private void Update()
-    {
-        unit1Displayer.text = UnitDataController.GetInstance().getUnitNum(0).ToString();
-        unit2Displayer.text = UnitDataController.GetInstance().getUnitNum(1).ToString();
-        unit3Displayer.text = UnitDataController.GetInstance().getUnitNum(2).ToString();
-        unit4Displayer.text = UnitDataController.GetInstance().getUnitNum(3).ToString();
+			if (instance == null)
+			{
+				GameObject container = new GameObject("UIManager");
 
-        //respwanTime1.text = GameController.GetInstance().GetRespwanTime(0).ToString("N1");
-		//respwanTime2.text = GameController.GetInstance().GetRespwanTime(1).ToString("N1");
+				instance = container.AddComponent<UIManager>();
+			}
+		}
+		return instance;
+	}
+
+    public Text[] unitDisplayer;
+	int unitKind;
+
+	void Start(){
+		unitKind = UnitDataController.GetInstance ().unitKind;
+			
+		//unitDisplayer = new Text[unitKind];
+		for (int i = 0; i < unitKind; i++)
+			unitDisplayer [i].text = "0";
+	}
+
+    public void setUnitNumText(){
+		for (int i = 0; i < unitKind; i++)
+			unitDisplayer [i].text = 
+				GameController.GetInstance().getActiveGen().getUnitNum(i).ToString();
     }
 }

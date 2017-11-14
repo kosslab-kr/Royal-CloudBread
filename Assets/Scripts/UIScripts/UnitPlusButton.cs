@@ -7,9 +7,13 @@ public class UnitPlusButton : MonoBehaviour {
 
     public int num;
 
-    public void OnClick()
-    {
-        UnitDataController.GetInstance().Add_unit_num(num);
+    public void OnClick(){
+		UnitGenerator activeGen = GameController.GetInstance ().getActiveGen ();
+
+		if (activeGen) {
+			activeGen.pushGenUnit (num);
+			UIManager.GetInstance ().setUnitNumText ();
+		}
     }
 
 }

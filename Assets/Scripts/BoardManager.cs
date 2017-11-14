@@ -41,7 +41,7 @@ public class BoardManager : MonoBehaviour {
     //hierarchy를 깔끔하게 하기위해
     private Transform boardHolder;
     private Transform ourTowerHolder;
-    private Transform enemyTowerHolder;
+    //private Transform enemyTowerHolder;
     /*게임판 위의 가능한 모든 다른위치들을 추적하기 위해 사용* 
      * 오브젝트가 해당 장소에 있는지 없는지 추적하는데도 사용*/
     private List<Vector3> gridPositions = new List<Vector3>();
@@ -115,7 +115,7 @@ public class BoardManager : MonoBehaviour {
 
     void enemyTowerSetup()
     {
-        enemyTowerHolder = new GameObject("enemyTower").transform;
+        //enemyTowerHolder = new GameObject("enemyTower").transform;
 
         for (int x = 1; x <= columns; x++)
         {

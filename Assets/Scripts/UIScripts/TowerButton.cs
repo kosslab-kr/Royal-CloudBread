@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class TowerButton : MonoBehaviour {
 
-    public int num;
+    //public int num;
+	public UnitGenerator assignedGen;
+
+	//void Start(){
+		//assignedGen = transform.parent.gameObject.GetComponent<UnitGenerator>();
+	//}
 
 	public void OnClick()
     {
-        GameController.GetInstance().SetTowerActive(num);
-        
+		print ("Clicked!");
+		GameController.GetInstance ().SetGenActive (assignedGen);
+		assignedGen.isActive = true;
+		UIManager.GetInstance ().setUnitNumText ();
     }
 }

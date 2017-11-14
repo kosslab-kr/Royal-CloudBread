@@ -23,51 +23,30 @@ public class GameController : MonoBehaviour {
         }
         return instance;
     }
+		
+	public readonly float resetTime = 6.0f;	//유닛 생성에 필요한 시간
+	UnitGenerator activeGen = null;				//현재 활성상태인 타워의 reference를 저장
 
-	int activeTower = -1;			//현재 활성상태인 타워의 번호만을 저장, -1은 유저가 터치하기 전상태
-	public static float resetTime = 6.0f;
-	private float[] respawnTime = new float[2];
-
-    void Start () {
-		for (int i = 0; i < 2; i++)
-			respawnTime [i] = resetTime;
-        //checkTime = 0.0f;
+	//현재 활성화된 Generator를 비활성화시키고 특정 Generator를 받아 활성화시키고
+	public void SetGenActive(UnitGenerator genToActive)	
+    {
+		if (activeGen)
+			activeGen.isActive = false;
+		activeGen = genToActive;
     }
 
-
-	public UnitGenerator generator;
-	void FixedUpdate () {
-		if (activeTower >= 0) {	//유저가 터치하기 전엔 실행되지 않음
-			respawnTime [activeTower] -= Time.deltaTime;
-			if (respawnTime [activeTower] <= 0.0f) {
-				//Unit Generation
-				generator.generateUnit();
-
-				respawnTime [activeTower] = resetTime;
-			}
-		}
+	public UnitGenerator getActiveGen(){
+		return activeGen;
 	}
 
-    public float GetRespwanTime(int num)
-    {
-        return respawnTime[num];
-    }
-
-    public void SetTowerActive(int num)		//num만 argument로 받아서 이 번호의 타워를 활성상태로
-    {
-		activeTower = num;
-		//TODO : 매 Active 시마다 타워 위치를 기반으로 각 generator의 위치를 변경
-
-
-
-    }
-
+	/*
 	public bool isTowerActive(int num){
 		if (activeTower == num)
 			return true;
 		else
 			return false;
 	}
+	*/
 }
 
 /* Legacy Codes
@@ -90,4 +69,31 @@ public class GameController : MonoBehaviour {
 		else
 			towerActive[i] = !isActive;
 	}
+
+	private float[] respawnTime = new float[2];
+
+    void Start () {
+		for (int i = 0; i < 2; i++)
+			respawnTime [i] = resetTime;
+        //checkTime = 0.0f;
+    }
+
+
+	public UnitGenerator activeGen;
+	void FixedUpdate () {
+		if (activeTower >= 0) {	//유저가 터치하기 전엔 실행되지 않음
+			respawnTime [activeTower] -= Time.deltaTime;
+			if (respawnTime [activeTower] <= 0.0f) {
+				//Unit Generation
+				generator.generateUnit();
+
+				respawnTime [activeTower] = resetTime;
+			}
+		}
+	}
+
+    public float GetRespwanTime(int num)
+    {
+        return respawnTime[num];
+    }
 */
