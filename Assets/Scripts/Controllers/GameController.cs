@@ -27,7 +27,7 @@ public class GameController : MonoBehaviour {
 	public readonly float resetTime = 6.0f;	//유닛 생성에 필요한 시간
 	UnitGenerator activeGen = null;				//현재 활성상태인 타워의 reference를 저장
 
-	//현재 활성화된 Generator를 비활성화시키고 특정 Generator를 받아 활성화시키고
+	//현재 활성화된 Generator를 비활성화시키고 특정 Generator를 받아 활성화
 	public void SetGenActive(UnitGenerator genToActive)	
     {
 		if (activeGen)
@@ -35,18 +35,10 @@ public class GameController : MonoBehaviour {
 		activeGen = genToActive;
     }
 
+	//Get the currently activated generator. Used bu UI
 	public UnitGenerator getActiveGen(){
 		return activeGen;
 	}
-
-	/*
-	public bool isTowerActive(int num){
-		if (activeTower == num)
-			return true;
-		else
-			return false;
-	}
-	*/
 }
 
 /* Legacy Codes
@@ -96,4 +88,11 @@ public class GameController : MonoBehaviour {
     {
         return respawnTime[num];
     }
+
+	public bool isTowerActive(int num){
+		if (activeTower == num)
+			return true;
+		else
+			return false;
+	}
 */
