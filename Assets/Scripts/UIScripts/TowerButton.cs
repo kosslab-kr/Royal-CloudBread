@@ -13,7 +13,7 @@ public class TowerButton : MonoBehaviour {
 
 	public void OnClick()
     {
-		GameController.GetInstance ().SetGenActive (assignedGen);
+		GameController.GetInstance ().setGenActive (assignedGen);
 		assignedGen.isActive = true;
 		UIManager.GetInstance ().setUnitNumText ();
     }

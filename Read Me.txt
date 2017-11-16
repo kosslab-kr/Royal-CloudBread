@@ -1,0 +1,39 @@
+변경점
+
+1. 유닛 생산 방식 변경
+생산해야 할 유닛의 데이터와 생산 주기를 GameController에서 관리하지 않고 각 타워에 부여되는 UnitGenerator에서 관리합니다. 이를 통해 각 타워마다 생산할 유닛의 리스트가 따로 관리되며, 타워를 추가할 때 GameController의 변경 없이 프리팹을 복사한 후 버튼과 슬라이더만 추가해서 연결해 주면 됩니다. 여기서 각 구성 요소들의 역할 및 변경점은 다음과 같습니다.
+
+GameController: 생산 주기(resetTime)을 read only 타입으로 글로벌하게 사용할 수 있게 해주며, 한 타워가 활성화될 때 이미 활성화되어 있던 타워를 비활성화 시켜줍니다(setActive). UI에서 현재 활성화되어 있는 타워에 접근할 수 있게 해줍니다(getActiveGen)
+
+UnitDataController: 생산할 수 있는 유닛의 리스트(unit), 한번에 총 생산알 수 있는 유닛 개수(maxUnitNum)와 유닛 종류수(unitKind)를 글로벌 영역에서 접근할 수 있게 해줍니다. index를 통해 유닛 프리팹에 접근할 수 있게 해줍니다(genUnitAt).
+
+UnitGenerator: GameController에서 관리되던 생산해야 하는 유닛 리스트(genUnitList), 각 유닛의 개수와 총 생산 개수(genUnitNum, eachUnitNum), 생성까지 남은 시간(spentTime)등을 저장하여 타워별로 각각 관리합니다. 정해진 시간이 지나면 리스트에 저장된 프리팹 정보를 참조하여 유닛들을 일괄 생성하고(generateUnit) 상태를 초기화합니다. isActive가 true로 세팅되어야만 시간 갱신과 유닛 생산이 이루어집니다.
+
+AIController: 적 타워에서 유닛을 생산합니다. 현재는 임의로 생산 시간(6초)이 한번 지날때 마다 생산하는 타워를 변경하며 생산하도록 설정했습니다. 생산할 수 있는 유닛은 enemyUnits에 저장되며, 각 유닛에 대한 weight(unitGenWeight)가 설정되어 weighted random으로 생산할 각 유닛이 결정됩니다. 그 외에 각 타워의 UnitGenerator 정보가 저장됩니다(enemyGenList).
+
+2. UI 표시 방식 변경
+
+UIManager: Slider가 respwanTimeShower에 의해 별도 관리되면서 유닛의 숫자를 표시하는 Text들만 관리합니다(unitDisplayer 배열). Singleton화시켜 글로벌 영역에서 접근 가능하게 변경했으며 Update로 상시 수정되던 것을 외부에서 호출이 있을 때만 변경하도록 수정했습니다(setUnitNumText).
+
+TowerButton: assignedGen이라는 변수로 버튼이 할당된 타워를 참조하며, 버튼이 눌렸을 때 GameController에 이를 알리고(setGenActive) 해당 타워를 활성화시킵니다. 이후 UI에 표시되는 유닛 개수를 갱신합니다.
+
+UnitPlusButton/UnitSubButton: GameController에서 활성화된 타워(UnitGenerator)를 얻어와(getActiveGen) 해당 UnitGenerator의 메소드(pushGenUnit, popGenUnit)를 통해 어떤 유닛을 추가/감소시켜야 하는지 전달합니다. 이는 UnitDataController에 저장된 해당 유닛의 index로 전달됩니다.
+
+RespawnTimeShower: UnitGenerator에 의해 참조되며 생산까지 남은 시간이 변경될 때마다 이것이 UnitGenerator에서 여기로 전달됩니다(value). 이 값이 이 스크립트를 적용한 오브젝트의 하위에 있는 각종 UI요소(슬라이더, 텍스트 등)에 전달되어 화면을 갱신시킵니다. 현재는 슬라이더만 적용되어 있습니다.
+
+
+3. 적 타워 및 적 유닛 프리팹 제작
+Prefab/Enemies에서 확인하실 수 있습니다. 해골 검사/궁수와 타워를 제작했으며 능력치는 임의로 결정했습니다. 스크립트는 기존 스크립트와 동일하게 적용됩니다.
+
+
+TODO
+
+1. 본진 추가. 스크립트를 따로 작성하기보다는 적 인식 및 공격 부분은 TowerBehavior, 유닛 생산 부분은 UnitGenerator를 상속하거나 수정하여(특정 플래그를 적용하여) 만들 예정입니다. 본진은 마법사와 같이 다중 인식하여 공격하도록 할까 생각중입니다. 또한 파괴되었을 때에 게임이 끝나는 트리거를 적용해야 합니다.
+
+2. 타워 파괴시 이것이 상위 컨트롤러(GameController, AIController)에게 피드백되도록 할 예정입니다. AI의 경우 파괴된 타워가 더이상 인식되지 않아야 해당 타워를 선택하지 않을 것이고, 유저와 AI 모두에게 해당되는 사항으로는 타워가 파괴되었을때 생산 지점을 본진으로 옮겨야 하기 때문입니다.
+
+3. waypoint가 타워-본진 순으로 이어지도록 수정할 예정입니다. 빈 게임오브젝트의 부모-자식 구조로 구성하여 move 함수를 수정할 생각입니다.
+
+4. 유닛 및 타워가 공격받을 시 데미지 팝업이 뜨도록 하고, 타워 및 본진에 체력바를 제작할 예정입니다. 또한 선택된 타워가 구분될 수 있도록 위에 화살표를 띄울 예정입니다.
+
+5. 화살히 향하는 방향을 가리키도록 할 예정이며, 간이로 적용한 마법사 및 적군 타워의 이펙트를 변경할 예정입니다.

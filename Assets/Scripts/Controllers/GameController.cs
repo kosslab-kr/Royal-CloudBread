@@ -28,7 +28,7 @@ public class GameController : MonoBehaviour {
 	UnitGenerator activeGen = null;				//현재 활성상태인 타워의 reference를 저장
 
 	//현재 활성화된 Generator를 비활성화시키고 특정 Generator를 받아 활성화
-	public void SetGenActive(UnitGenerator genToActive)	
+	public void setGenActive(UnitGenerator genToActive)	
     {
 		if (activeGen)
 			activeGen.isActive = false;

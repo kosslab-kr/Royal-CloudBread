@@ -17,7 +17,7 @@ public class AIController : MonoBehaviour
     int enemyTowerNum = 2;
     int activeEnemyGenNum;
 
-	float resetTime = GameController.GetInstance().resetTime;
+	float resetTime;
 
     void Start()
     {
@@ -28,6 +28,7 @@ public class AIController : MonoBehaviour
 		}
 		enemyGenList[activeEnemyGenNum].isActive = true;
 
+		resetTime = GameController.GetInstance().resetTime;
         spentTime = resetTime + 0.01f;
     }
 
@@ -72,8 +73,8 @@ public class AIController : MonoBehaviour
        
 
         /*TODO: 타워가 파괴되면 생산권한을 본진에 넘기는걸 어떻게 구현?
-         1. 버튼을 public으로 등록해서 끝나면 acitve? : 더럽다
-         2. 자식으로 등록해서 끝나면 active? : 부모가 deactive됐는데 자식이 active될수가 있나??
+         1. 버튼을 public으로 등록해서 끝나면 acitve?
+         2. 자식으로 등록해서 끝나면 active? : 부모가 deactive됐는데 자식이 active될수 있는지 여부??
          3. 위치를 이동하고 assignedGen을 변경? assignedGen은 whendestroyed등으로 넘겨놓고....:
             상대적으로 낫지만 결국 public써야하는건 똑같고 버튼의 위치이동이 무난히 가능한가??
 
