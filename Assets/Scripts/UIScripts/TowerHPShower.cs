@@ -24,6 +24,7 @@ public class TowerHPShower : MonoBehaviour {
         if(GetComponent<TowerBehaviour>().HP <= 0)
         {
             TowerHPbarSlider.gameObject.SetActive(false);
+            GetComponent<TowerBehaviour>().isSliderDead = true;
         }
     }
 }

@@ -35,20 +35,18 @@ public class ObjectBase : MonoBehaviour {
 
 	public int HP;
 	public int ATK;
+    public bool isSliderDead = false;
 	//When be damaged, decrease HP
 	public virtual void damaged (int dmg){
 		HP -= dmg;
 		if (HP <= 0)
         {
-            Invoke("delay", 1f);
-            Destroy (gameObject);
+            if(isSliderDead)
+                Destroy (gameObject);
         }
 
 		//myPopup.SetActive (true);
 	}
-
-    void delay() { Debug.Log("delay"); }
-    
 
     /* Legacy Code
 	//적 인식 시 공격 상태로 변경
