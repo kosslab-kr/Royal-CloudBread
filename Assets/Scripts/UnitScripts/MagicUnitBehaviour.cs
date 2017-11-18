@@ -5,6 +5,7 @@ using UnityEngine;
 public class MagicUnitBehaviour : UnitBehaviour {
 	public GameObject arrowObject;
 	public float arrowSpeed;
+    public AudioSource audioSource;
 
 	GameObject[] enemys = {null, null, null};
 	int enemy_count;
@@ -54,6 +55,7 @@ public class MagicUnitBehaviour : UnitBehaviour {
 				newArrow = Instantiate (arrowObject);
 				newArrow.transform.position = transform.position;
 				newArrow.GetComponent<ArrowBehaviour> ().setTarget (enemys [i], ATK, arrowSpeed);
+                SoundManager.instance.MagicAttack();
 			}
 		}
 	}
