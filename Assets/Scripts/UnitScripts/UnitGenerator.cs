@@ -22,6 +22,7 @@ public class UnitGenerator : MonoBehaviour {
 
 	//Generating Point(Tower, or Castle)
 	Transform availGP;
+	GameObject lineArrow;
 
 	//Button(For position translate)
 	public Button towerButton;
@@ -34,6 +35,10 @@ public class UnitGenerator : MonoBehaviour {
 
 		//Set Generation Points(Default: Tower)
 		availGP = transform.GetChild(0);
+		if (availGP.transform.Find ("Line Arrow"))
+			lineArrow = availGP.transform.Find ("Line Arrow").gameObject;
+		else
+			lineArrow = null;
 
 		//Initialize unit generation list, number of each and total units
 		genUnitList = new GameObject[unitData.maxUnitNum];
@@ -66,12 +71,18 @@ public class UnitGenerator : MonoBehaviour {
                 towerButton.transform.position = availGP.position
 					+ new Vector3(xOffset, yOffset, buttonZ);
             }
+			if (availGP.transform.Find ("Line Arrow"))
+				lineArrow = availGP.transform.Find ("Line Arrow").gameObject;
         }
 
         //Check only if this generator is active
-        if (isActive) {
+		if (isActive) {
+			if (lineArrow && lineArrow.activeSelf == false)
+				lineArrow.SetActive (true);
+
 			spentTime -= Time.deltaTime;
-			if (timeDisplay) timeDisplay.setTime (spentTime);
+			if (timeDisplay)
+				timeDisplay.setTime (spentTime);
 
 			//Generate units in the list when the reset time expired
 			if (spentTime < 0.0f) {
@@ -80,8 +91,12 @@ public class UnitGenerator : MonoBehaviour {
 
 				//Reset time
 				spentTime = gameData.resetTime;
-				if (timeDisplay) timeDisplay.setTime (spentTime);
+				if (timeDisplay)
+					timeDisplay.setTime (spentTime);
 			}
+		} else {
+			if (lineArrow && lineArrow.activeSelf == true)
+				lineArrow.SetActive (false);
 		}
 	}
 
