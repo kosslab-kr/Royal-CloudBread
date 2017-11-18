@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour {
     public AudioClip soundMagicAttack;
-    AudioSource myAudio;
 
-    public static SoundManager instance;
+	static AudioSource myAudio;
+    public static SoundManager instance = null;
+
 	// Use this for initialization
     void Awake() //start보다 먼져
     {
         if (SoundManager.instance == null)
             SoundManager.instance = this;
+		myAudio = gameObject.GetComponent<AudioSource>();
     }
 
 	void Start () {
@@ -21,8 +23,4 @@ public class SoundManager : MonoBehaviour {
     {
         myAudio.PlayOneShot(soundMagicAttack);
     }
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

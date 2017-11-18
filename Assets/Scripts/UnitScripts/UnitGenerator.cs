@@ -21,7 +21,7 @@ public class UnitGenerator : MonoBehaviour {
 	public bool isActive;
 
 	//Generating Point(Tower, or Castle)
-	int availGP;
+	Transform availGP;
 
 	//Button(For position translate)
 	public Button towerButton;
@@ -33,7 +33,7 @@ public class UnitGenerator : MonoBehaviour {
 		gameData = GameController.GetInstance();
 
 		//Set Generation Points(Default: Tower)
-		availGP = 0;
+		availGP = transform.GetChild(0);
 
 		//Initialize unit generation list, number of each and total units
 		genUnitList = new GameObject[unitData.maxUnitNum];
@@ -52,11 +52,24 @@ public class UnitGenerator : MonoBehaviour {
 		isActive = false;
 	}
 
+	public float xOffset;
+	public float yOffset;
 	//Check timer and generate units when reset time expired
 	float spentTime;
 	void FixedUpdate(){
-		//Check only if this generator is active
-		if (isActive) {
+        if (!availGP)           //If current available point(tower) is destroyed, change
+        {                       //check even if it is not activated
+            availGP = transform.GetChild(0);
+            if (towerButton)
+            {
+                float buttonZ = towerButton.transform.position.z;
+                towerButton.transform.position = availGP.position
+					+ new Vector3(xOffset, yOffset, buttonZ);
+            }
+        }
+
+        //Check only if this generator is active
+        if (isActive) {
 			spentTime -= Time.deltaTime;
 			if (timeDisplay) timeDisplay.setTime (spentTime);
 
@@ -76,15 +89,11 @@ public class UnitGenerator : MonoBehaviour {
 	void generateUnit(){
 		GameObject newUnit;	//Used for unit instantiation
 
-		if (!transform.GetChild (availGP)) {	//If current available point(tower) is destroyed, change
-			availGP += 1;
-		}
-
 		for (int i = 0; i < genUnitNum; i++){
 			newUnit = Instantiate (genUnitList[i]);
-			newUnit.transform.position = transform.GetChild(availGP).Find 
-					("Unit Generation Point " + i).position;	//Find unit generation point, which is a child of tower
-			newUnit.tag = string.Copy (gameObject.tag);			//Copy tag from the generator to team identification
+			newUnit.transform.position = availGP.Find
+							("Unit Generation Point " + i).position;	//Find unit generation point, which is a child of tower
+			newUnit.tag = string.Copy (gameObject.tag);					//Copy tag from the generator to team identification
 			newUnit.GetComponent<UnitBehaviour> ().waypoint = waypoint;	//Copy the waypoint referenced by the generator
 
 			genUnitList [i] = null;
