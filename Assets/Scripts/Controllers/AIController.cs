@@ -14,7 +14,7 @@ public class AIController : MonoBehaviour
 
 	//The list of enemy unit generator, number of towers(generator), 
 	//										and index of activated genrator
-	static int enemyUnitGenNum = 1;
+	static int enemyUnitGenNum = 2;
 	public UnitGenerator[] enemyGenList = new UnitGenerator[enemyUnitGenNum];
     int activeEnemyGenNum;
 

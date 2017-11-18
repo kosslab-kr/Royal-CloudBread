@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 //모든 개체의 공통기능 및 속성 정의
 public class ObjectBase : MonoBehaviour {
@@ -14,38 +15,42 @@ public class ObjectBase : MonoBehaviour {
 
 	public float attackFreq;
 	protected float timeSpent;
-	//NavMeshAgent agent;
+    //NavMeshAgent agent;
 
-	//public GameObject Popup;
-	//GameObject myPopup;
+    //public GameObject Popup;
+    //GameObject myPopup;
 
-	protected void Start () {
+
+    protected void Start () {
 		enemy = null;
 		detector = transform.GetChild(0).gameObject.GetComponent<DetectorBehaviour>();
 														//탐지 콜라이더
 
 		timeSpent = attackFreq;							//처음 적 인식시 바로 공격
-
-		//myPopup = Instantiate (Popup);
-		//myPopup.transform.position = transform.position + new Vector3 (0.0f, 2.0f, 0.0f);
-		//myPopup.SetActive (false);
-	}
+        
+        //myPopup = Instantiate (Popup);
+        //myPopup.transform.position = transform.position + new Vector3 (0.0f, 2.0f, 0.0f);
+        //myPopup.SetActive (false);
+    }
 
 	public int HP;
 	public int ATK;
-
 	//When be damaged, decrease HP
-	public void damaged (int dmg){
+	public virtual void damaged (int dmg){
 		HP -= dmg;
-		if (HP <= 0) {
-			Destroy (gameObject);
-		}
+		if (HP <= 0)
+        {
+            Invoke("delay", 1f);
+            Destroy (gameObject);
+        }
 
 		//myPopup.SetActive (true);
 	}
 
+    void delay() { Debug.Log("delay"); }
+    
 
-	/* Legacy Code
+    /* Legacy Code
 	//적 인식 시 공격 상태로 변경
 	public void changeToAttack(GameObject _enemy){
 		enemy = _enemy;

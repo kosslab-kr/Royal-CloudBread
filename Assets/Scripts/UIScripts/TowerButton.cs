@@ -5,10 +5,10 @@ using UnityEngine;
 public class TowerButton : MonoBehaviour {
 	public UnitGenerator assignedGen;
 
-	void Start(){
+	/*void Start(){
 		//assignedGen = transform.parent.gameObject.GetComponent<UnitGenerator>();
 		print (transform.position);
-	}
+	}*/
 
 	public void OnClick()
     {
