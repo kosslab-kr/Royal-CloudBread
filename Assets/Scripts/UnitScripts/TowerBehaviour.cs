@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 //타워의 행동 및 속성 정의
 public class TowerBehaviour : ObjectBase {
 	public GameObject arrowObject;
 	public float arrowSpeed;
 
-	new void Start () {
+    new void Start () {
 		base.Start ();
 		curBehavior = Behaviour.idle;	//타워는 이동하지 않음
 	}
@@ -38,4 +39,16 @@ public class TowerBehaviour : ObjectBase {
 		newArrow.transform.position = transform.position;
 		newArrow.GetComponent<ArrowBehaviour> ().setTarget (enemy, ATK, arrowSpeed);
 	}
+
+    public override void damaged(int dmg)
+    {
+        HP -= dmg;
+        if (HP <= 0)
+        {
+            TowerHPbarSlider.gameObject.SetActive(false);
+            Destroy(gameObject);
+        }
+
+        //myPopup.SetActive (true);
+    }
 }
