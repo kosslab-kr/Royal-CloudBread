@@ -12,8 +12,9 @@ public class ObjectBase : MonoBehaviour {
 	protected Behaviour curBehavior;
 	protected Behaviour beforeBehavior; 
 	protected string[] animationList;
+    public Slider TowerHPbarSlider;
 
-	public float attackFreq;
+    public float attackFreq;
 	protected float timeSpent;
     //NavMeshAgent agent;
 
@@ -37,12 +38,12 @@ public class ObjectBase : MonoBehaviour {
 	public int ATK;
     public bool isSliderDead = false;
 	//When be damaged, decrease HP
+
 	public virtual void damaged (int dmg){
 		HP -= dmg;
 		if (HP <= 0)
         {
-            if(isSliderDead)
-                Destroy (gameObject);
+           Destroy (gameObject);
         }
 
 		//myPopup.SetActive (true);
