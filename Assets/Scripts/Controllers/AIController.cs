@@ -8,13 +8,14 @@ public class AIController : MonoBehaviour
 
 
 	//The list of enemy units and the weight of them(weighted random generaton)
-    public GameObject[] enemyUnits = new GameObject[2];
-    public int[] unitGenWeight = new int[2];
+	static int enemyUnitKind = 2;
+	public GameObject[] enemyUnits = new GameObject[enemyUnitKind];
+	public int[] unitGenWeight = new int[enemyUnitKind];
 
 	//The list of enemy unit generator, number of towers(generator), 
 	//										and index of activated genrator
-    public UnitGenerator[] enemyGenList = new UnitGenerator[2];
-    int enemyTowerNum = 2;
+	static int enemyUnitGenNum = 1;
+	public UnitGenerator[] enemyGenList = new UnitGenerator[enemyUnitGenNum];
     int activeEnemyGenNum;
 
 	float resetTime;
@@ -37,10 +38,10 @@ public class AIController : MonoBehaviour
 	{
 		spentTime -= Time.deltaTime;
 		if (spentTime < 0.0f) {
-			if (enemyGenList [(activeEnemyGenNum + 1) % enemyTowerNum]) {
+			if (enemyGenList [(activeEnemyGenNum + 1) % enemyUnitGenNum]) {
 				enemyGenList [activeEnemyGenNum].isActive = false;
 
-				activeEnemyGenNum = (activeEnemyGenNum + 1) % enemyTowerNum;
+				activeEnemyGenNum = (activeEnemyGenNum + 1) % enemyUnitGenNum;
 				enemyGenList [activeEnemyGenNum].isActive = true;
 				for (int i = 0; i < UnitDataController.GetInstance ().maxUnitNum; i++) {
 					enemyGenList [activeEnemyGenNum].pushGenUnit (seletctUnit ());
@@ -56,12 +57,12 @@ public class AIController : MonoBehaviour
 		//가중치에 따른 랜덤으로 리스트에서 유닛 하나 골라서 리턴
 		//이걸 pushUnit
 		int sum = 0;
-		for (int i = 0; i < unitGenWeight.Length; i++) {
+		for (int i = 0; i < enemyUnitKind; i++) {
 			sum += unitGenWeight [i];
 		}
 
 		int randomNum = Random.Range (0, sum - 1);
-		for (int i = 0; i < unitGenWeight.Length; i++) {
+		for (int i = 0; i < enemyUnitKind; i++) {
 			if (randomNum < unitGenWeight [i])
 				return enemyUnits [i];
 			randomNum -= unitGenWeight [i];

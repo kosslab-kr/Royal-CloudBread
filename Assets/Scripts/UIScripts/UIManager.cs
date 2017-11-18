@@ -34,8 +34,10 @@ public class UIManager : MonoBehaviour {
 	}
 
     public void setUnitNumText(){
-		for (int i = 0; i < unitKind; i++)
-			unitDisplayer [i].text = 
-				GameController.GetInstance().getActiveGen().getUnitNum(i).ToString();
+		if (GameController.GetInstance ().getActiveGen ()) {
+			for (int i = 0; i < unitKind; i++)
+				unitDisplayer [i].text = 
+				GameController.GetInstance ().getActiveGen ().getUnitNum (i).ToString ();
+		}
     }
 }

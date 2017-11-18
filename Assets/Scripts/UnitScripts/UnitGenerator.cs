@@ -20,11 +20,19 @@ public class UnitGenerator : MonoBehaviour {
 	//State of generator
 	public bool isActive;
 
+	//Generating Point(Tower, or Castle)
+	int availGP;
+
 	//Initialize
 	void Start(){
 		//Get Referenece of globals
 		unitData = UnitDataController.GetInstance();
 		gameData = GameController.GetInstance();
+
+		//Set Generation Points(Default: Tower)
+		availGP = 0;
+
+		print (transform.position);
 
 		//Initialize unit generation list, number of each and total units
 		genUnitList = new GameObject[unitData.maxUnitNum];
@@ -55,8 +63,6 @@ public class UnitGenerator : MonoBehaviour {
 			if (spentTime < 0.0f) {
 				generateUnit ();
 				UIManager.GetInstance ().setUnitNumText ();
-				//issue: time Display와 unit number의 UI가 분리되어 버려서 UI관련 함수를 2번 호출함
-				//기존처럼 UI manager를 통한 관리? Generator가 unit number text도 참조하도록?
 
 				//Reset time
 				spentTime = gameData.resetTime;
@@ -69,9 +75,14 @@ public class UnitGenerator : MonoBehaviour {
 	void generateUnit(){
 		GameObject newUnit;	//Used for unit instantiation
 
+		if (!transform.GetChild(availGP))	//If current available point(tower) is destroyed, change
+			availGP += 1;
+
 		for (int i = 0; i < genUnitNum; i++){
 			newUnit = Instantiate (genUnitList[i]);
-			newUnit.transform.position = transform.Find 
+			//newUnit.GetComponent<Rigidbody2D> ().enabled = false;
+			//newUnit.GetComponent<Rigidbody2D> ().enabled = true;
+			newUnit.transform.position = transform.GetChild(availGP).Find 
 					("Unit Generation Point " + i).position;	//Find unit generation point, which is a child of tower
 			newUnit.tag = string.Copy (gameObject.tag);			//Copy tag from the generator to team identification
 			newUnit.GetComponent<UnitBehaviour> ().waypoint = waypoint;	//Copy the waypoint referenced by the generator
@@ -93,6 +104,7 @@ public class UnitGenerator : MonoBehaviour {
 		}
 	}
 
+	//Add an unit to list, units identified by prefab reference(used by AI)
 	public void pushGenUnit(GameObject unitToPush){
 		if (genUnitNum < unitData.maxUnitNum) {
 			genUnitList [genUnitNum++] = unitToPush;

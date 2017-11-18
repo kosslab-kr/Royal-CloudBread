@@ -49,7 +49,7 @@ public class UnitBehaviour : ObjectBase {
 	protected void move(){
 		Vector3 beforePos;
 
-		if (!transform.position.Equals (waypoint)) {
+		if (Vector3.Distance(transform.position, waypoint.transform.position) > 1.0f) {
 			beforePos = transform.position;
 			transform.position = Vector3.MoveTowards(transform.position, waypoint.transform.position, moveSpeed * Time.deltaTime);
 
@@ -57,7 +57,10 @@ public class UnitBehaviour : ObjectBase {
 			animationControl ();
 		}
 		else {
-			curBehavior = Behaviour.idle;
+			if (waypoint.gameObject.name.CompareTo ("End") == 0)
+				curBehavior = Behaviour.idle;
+			else
+				waypoint = waypoint.transform.GetChild (0);
 		}
 	}
 

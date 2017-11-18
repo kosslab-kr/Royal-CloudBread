@@ -6,14 +6,15 @@ using UnityEngine;
 public class ArrowBehaviour : MonoBehaviour {
 	GameObject target;
 	int atk;
-	public float speed;
+	float speed;
 
 	bool tracking = false;
 
 	//투사체를 생성하는 개체로부터 타겟과 공격력을 받아옴
-	public void setTarget(GameObject _target, int _atk){
+	public void setTarget(GameObject _target, int _atk, float _speed){
 		target = _target;
 		atk = _atk;
+		speed = _speed;
 		tracking = true;
 	}
 		

@@ -34,13 +34,11 @@ public class ObjectBase : MonoBehaviour {
 	public int HP;
 	public int ATK;
 
-	//데미지 입음
+	//When be damaged, decrease HP
 	public void damaged (int dmg){
 		HP -= dmg;
-		Debug.Log (dmg + " point damaged to" + enemy);
 		if (HP <= 0) {
 			Destroy (gameObject);
-			Debug.Log ("destroyed!");
 		}
 
 		//myPopup.SetActive (true);

@@ -15,17 +15,20 @@ public class DetectorBehaviour : MonoBehaviour {
 	}
 
 	void OnTriggerStay2D(Collider2D other){
-		if (other.gameObject.CompareTag(transform.parent.gameObject.tag) == false
-				&& !enemyList.Contains(other.gameObject)) {
+		if (other.gameObject
+			&& other.gameObject.CompareTag(transform.parent.gameObject.tag) == false
+			&& !enemyList.Contains(other.gameObject)) {
 			enemyList.Add (other.gameObject);
 		}
 	}
 
+	/*
 	void OnTriggerExit2D(Collider2D other){
-		if (enemyList.Contains(other.gameObject)) {
+		if (other.gameObject && enemyList.Contains(other.gameObject)) {
 			enemyList.Remove (other.gameObject);
 		}
 	}
+	*/
 
 	public GameObject getEnemy(){
 		GameObject temp = null;

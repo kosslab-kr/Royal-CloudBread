@@ -5,6 +5,7 @@ using UnityEngine;
 //타워의 행동 및 속성 정의
 public class TowerBehaviour : ObjectBase {
 	public GameObject arrowObject;
+	public float arrowSpeed;
 
 	new void Start () {
 		base.Start ();
@@ -35,6 +36,6 @@ public class TowerBehaviour : ObjectBase {
 	void attack(){
 		GameObject newArrow = Instantiate (arrowObject);
 		newArrow.transform.position = transform.position;
-		newArrow.GetComponent<ArrowBehaviour> ().setTarget (enemy, ATK);
+		newArrow.GetComponent<ArrowBehaviour> ().setTarget (enemy, ATK, arrowSpeed);
 	}
 }
