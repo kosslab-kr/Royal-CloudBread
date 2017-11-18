@@ -23,6 +23,9 @@ public class UnitGenerator : MonoBehaviour {
 	//Generating Point(Tower, or Castle)
 	int availGP;
 
+	//Button(For position translate)
+	public Button towerButton;
+
 	//Initialize
 	void Start(){
 		//Get Referenece of globals
@@ -31,8 +34,6 @@ public class UnitGenerator : MonoBehaviour {
 
 		//Set Generation Points(Default: Tower)
 		availGP = 0;
-
-		print (transform.position);
 
 		//Initialize unit generation list, number of each and total units
 		genUnitList = new GameObject[unitData.maxUnitNum];
@@ -75,13 +76,12 @@ public class UnitGenerator : MonoBehaviour {
 	void generateUnit(){
 		GameObject newUnit;	//Used for unit instantiation
 
-		if (!transform.GetChild(availGP))	//If current available point(tower) is destroyed, change
+		if (!transform.GetChild (availGP)) {	//If current available point(tower) is destroyed, change
 			availGP += 1;
+		}
 
 		for (int i = 0; i < genUnitNum; i++){
 			newUnit = Instantiate (genUnitList[i]);
-			//newUnit.GetComponent<Rigidbody2D> ().enabled = false;
-			//newUnit.GetComponent<Rigidbody2D> ().enabled = true;
 			newUnit.transform.position = transform.GetChild(availGP).Find 
 					("Unit Generation Point " + i).position;	//Find unit generation point, which is a child of tower
 			newUnit.tag = string.Copy (gameObject.tag);			//Copy tag from the generator to team identification

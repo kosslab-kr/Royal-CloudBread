@@ -6,22 +6,38 @@ using UnityEngine;
 public class DetectorBehaviour : MonoBehaviour {
 	//ObjectBase self;
 
-	List<GameObject> enemyList;	//탐지한 적을 저장하는 리스트
+	List<GameObject> enemyList;		//탐지한 적을 저장하는 리스트
+	List<GameObject> sentEnemyList;	//List of enemy units sent to the unit
 
 	void Start () {
 		//self = transform.parent.gameObject.GetComponent<ObjectBase>();	//탐지하고 있는 개체
 
 		enemyList = new List<GameObject>();
+		sentEnemyList = new List<GameObject>();
 	}
+		
+	//Remove destroyed enemys in the list each reset time 
+	float spentTime = 0.0f;
+	static float resetTime = 5.0f;
+	void Update(){
+		spentTime += Time.deltaTime;
+		if (spentTime > resetTime) {
+			for (int i = 0; i < sentEnemyList.Count; i++) {
+				if (!sentEnemyList [i])
+					sentEnemyList.RemoveAt (i);
+			}
 
-	void OnTriggerStay2D(Collider2D other){
-		if (other.gameObject
-			&& other.gameObject.CompareTag(transform.parent.gameObject.tag) == false
-			&& !enemyList.Contains(other.gameObject)) {
-			enemyList.Add (other.gameObject);
+			spentTime = 0.0f;
 		}
 	}
 
+	void OnTriggerStay2D(Collider2D other){
+		if (other.gameObject.CompareTag(transform.parent.gameObject.tag) == false
+			&& !enemyList.Contains(other.gameObject)
+			&& !sentEnemyList.Contains(other.gameObject)) {
+			enemyList.Add (other.gameObject);
+		}
+	}
 	/*
 	void OnTriggerExit2D(Collider2D other){
 		if (other.gameObject && enemyList.Contains(other.gameObject)) {
@@ -29,11 +45,11 @@ public class DetectorBehaviour : MonoBehaviour {
 		}
 	}
 	*/
-
 	public GameObject getEnemy(){
 		GameObject temp = null;
 		if (enemyList.Count != 0) {
 			temp = enemyList [0];
+			sentEnemyList.Add (enemyList [0]);
 			enemyList.Remove (enemyList [0]);
 		}
 		return temp;

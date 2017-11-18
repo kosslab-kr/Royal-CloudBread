@@ -47,3 +47,7 @@ TODO
 TODO: 타워가 파괴되도 버튼은 그대로 남습니다. Generator에서 버튼을 인식하게 해서 버튼의 x, y축을 새로운 Generation Point로 이동시켜 줄 필요가 있습니다.
 
 2. Waypoint를 만들었습니다. 각 Waypoint는 부모-자식 형태로 구성되어 있고 한 지점에 일정 이상(현재 1.0f)가까이 가면 그 자식 지점을 waypoint로 삼게 됩니다.
+
+3. 본진을 추가했고 본진에 적용되는 스크립트인 CastleBehaviour를 작성했습니다. 한번에 3개의 타겟을 공격하며 파괴될 경우 GameController의 gameOver 함수를 호출하여 게임 오버 화면과 알맞은 문구를 출력합니다. 패널과 텍스트는 public 함수로 GameController에서 참조하도록 했습니다.
+
+4. Detector 오류를 발견하여 수정했습니다. 이제는 탐지한 적 리스트(enemyList)와 유닛에게 정보를 보낸 적 리스트(sentEnemyList)가 동시에 관리되며 이 둘에 모두 포함되지 않아야 새로 enemyList에 포함됩니다. sentEnemyList는 5초마다 한번씩 확인하여 파괴된 오브젝트들(null)을 제거합니다.

@@ -35,7 +35,7 @@ public class ObjectBase : MonoBehaviour {
 	public int ATK;
 
 	//When be damaged, decrease HP
-	public void damaged (int dmg){
+	public virtual void damaged (int dmg){
 		HP -= dmg;
 		if (HP <= 0) {
 			Destroy (gameObject);
