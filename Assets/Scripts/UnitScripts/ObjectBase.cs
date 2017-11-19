@@ -16,6 +16,7 @@ public class ObjectBase : MonoBehaviour {
 
     public float attackFreq;
 	protected float timeSpent;
+    public AudioClip soundAttack;
     //NavMeshAgent agent;
 
     //public GameObject Popup;

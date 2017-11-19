@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SoundManager : MonoBehaviour {
-    public AudioClip soundMagicAttack;
+    
 
 	static AudioSource myAudio;
     public static SoundManager instance = null;
@@ -19,8 +19,8 @@ public class SoundManager : MonoBehaviour {
 	void Start () {
         myAudio = GetComponent<AudioSource>();
 	}
-	public void MagicAttack()
+	public void SoundAttack(AudioClip _sound)
     {
-        myAudio.PlayOneShot(soundMagicAttack);
+        myAudio.PlayOneShot(_sound);
     }
 }

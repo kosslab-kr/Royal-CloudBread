@@ -55,7 +55,7 @@ public class MagicUnitBehaviour : UnitBehaviour {
 				newArrow = Instantiate (arrowObject);
 				newArrow.transform.position = transform.position;
 				newArrow.GetComponent<ArrowBehaviour> ().setTarget (enemys [i], ATK, arrowSpeed);
-                SoundManager.instance.MagicAttack();
+                SoundManager.instance.SoundAttack(soundAttack);
 			}
 		}
 	}
