@@ -13,6 +13,7 @@ public class ObjectBase : MonoBehaviour {
 	protected Behaviour beforeBehavior; 
 	protected string[] animationList;
     public Slider TowerHPbarSlider;
+    public AudioClip AttackSound;
 
     public float attackFreq;
 	protected float timeSpent;
