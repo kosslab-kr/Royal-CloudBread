@@ -18,8 +18,9 @@ public class RangeUnitBehaviour : UnitBehaviour {
 			GameObject newArrow = Instantiate (arrowObject);
 			newArrow.transform.position = transform.position;
 			newArrow.GetComponent<ArrowBehaviour> ().setTarget (enemy, ATK, arrowSpeed);
+            SoundManager.instance.SoundAttack(soundAttack);
 
-			timeSpent = 0.0f;
+            timeSpent = 0.0f;
 		}
 	}
 }

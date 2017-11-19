@@ -39,7 +39,8 @@ public class MeleeUnitBehaviour : UnitBehaviour {
 			transform.position = Vector3.MoveTowards (transform.position, enemy.transform.position, moveSpeed * Time.deltaTime);
 		} else if (timeSpent >= attackFreq) {											//공격 딜레이가 끝나면 공격
 			enemy.GetComponent<ObjectBase> ().damaged (ATK);
-			animationControl ();
+            SoundManager.instance.SoundAttack(soundAttack);
+            animationControl ();
 
 			timeSpent = 0.0f;
 		}

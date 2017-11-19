@@ -38,7 +38,8 @@ public class TowerBehaviour : ObjectBase {
 		GameObject newArrow = Instantiate (arrowObject);
 		newArrow.transform.position = transform.position;
 		newArrow.GetComponent<ArrowBehaviour> ().setTarget (enemy, ATK, arrowSpeed);
-	}
+        SoundManager.instance.SoundAttack(soundAttack);
+    }
 
     public override void damaged(int dmg)
     {
