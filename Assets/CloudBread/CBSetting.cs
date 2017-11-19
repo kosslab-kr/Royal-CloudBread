@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using UnityEditor;
+//using UnityEditor;	//Cannot be used out of unity editor
 using System.Collections.Generic;
 
 

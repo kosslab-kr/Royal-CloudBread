@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
-using UnityEditor;
+//using UnityEditor; //Cannot be used out of Unity Editor
 
 namespace CloudBread.OAuth
 {
@@ -80,7 +80,7 @@ namespace CloudBread.OAuth
 						string fullPath = Path.Combine(
 							Path.Combine("Assets", SettingsPath),
 							SettingAssetName + SettingsAssetExtension);
-						AssetDatabase.CreateAsset(instance, fullPath);
+						//AssetDatabase.CreateAsset(instance, fullPath);	//Cannot be used out of Unity Editor
 						#endif
 					}
 				}
