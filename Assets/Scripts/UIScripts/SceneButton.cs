@@ -7,6 +7,7 @@ public class SceneButton : MonoBehaviour {
 
 	public void OnClickButton(string scene)
 	{
-		SceneManager.LoadScene(scene);
+        Time.timeScale = 1.0f;
+        SceneManager.LoadScene(scene);
 	}
 }
